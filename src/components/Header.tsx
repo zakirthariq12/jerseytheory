@@ -1,9 +1,11 @@
 import { ShoppingCart, Menu, Search } from "lucide-react";
 import { useState } from "react";
 import logo from "@/assets/logo.png";
+import { useCart } from "@/contexts/CartContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { totalItems, setIsOpen } = useCart();
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -60,10 +62,13 @@ const Header = () => {
             <button className="p-2 hover:bg-secondary rounded-md transition-colors">
               <Search className="w-5 h-5" />
             </button>
-            <button className="p-2 hover:bg-secondary rounded-md transition-colors relative">
+            <button 
+              className="p-2 hover:bg-secondary rounded-md transition-colors relative"
+              onClick={() => setIsOpen(true)}
+            >
               <ShoppingCart className="w-5 h-5" />
               <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center font-bold">
-                0
+                {totalItems}
               </span>
             </button>
           </div>

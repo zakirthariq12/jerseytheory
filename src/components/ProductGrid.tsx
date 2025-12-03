@@ -11,14 +11,14 @@ import barcelonaPinkSpecial from "@/assets/jerseys/barcelona-pink-special.jpg";
 import brazilJesus from "@/assets/jerseys/brazil-jesus.jpg";
 
 const jerseys = [
-  { name: "Barcelona 24/25 Away Kit", image: barcelonaAway, price: 3600, originalPrice: 7200 },
-  { name: "Barcelona 25/26 Black Special Kit", image: barcelonaBlack, price: 3600, originalPrice: 7200 },
-  { name: "Barcelona 25/26 Bright Pink Special Kit", image: barcelonaPink, price: 3600, originalPrice: 7200 },
-  { name: "Real Madrid 25/26 Pink Dragon Special Kit", image: realMadridDragon, price: 3600, originalPrice: 7200 },
-  { name: "Santos 12/13 Home Kit", image: santosHome, price: 3600, originalPrice: 7200 },
-  { name: "Man United 07/08 L/S UCL Home Kit", image: manUnitedRetro, price: 3600, originalPrice: 7200 },
-  { name: "Barcelona 25/26 Pink Special Kit", image: barcelonaPinkSpecial, price: 3600, originalPrice: 7200 },
-  { name: "Brazil 24/25 Jesus Special Kit", image: brazilJesus, price: 3600, originalPrice: 7200 },
+  { id: "barcelona-away", name: "Barcelona 24/25 Away Kit", image: barcelonaAway, price: 3600, originalPrice: 7200 },
+  { id: "barcelona-black", name: "Barcelona 25/26 Black Special Kit", image: barcelonaBlack, price: 3600, originalPrice: 7200 },
+  { id: "barcelona-pink", name: "Barcelona 25/26 Bright Pink Special Kit", image: barcelonaPink, price: 3600, originalPrice: 7200 },
+  { id: "real-madrid-dragon", name: "Real Madrid 25/26 Pink Dragon Special Kit", image: realMadridDragon, price: 3600, originalPrice: 7200 },
+  { id: "santos-home", name: "Santos 12/13 Home Kit", image: santosHome, price: 3600, originalPrice: 7200 },
+  { id: "man-united-retro", name: "Man United 07/08 L/S UCL Home Kit", image: manUnitedRetro, price: 3600, originalPrice: 7200 },
+  { id: "barcelona-pink-special", name: "Barcelona 25/26 Pink Special Kit", image: barcelonaPinkSpecial, price: 3600, originalPrice: 7200 },
+  { id: "brazil-jesus", name: "Brazil 24/25 Jesus Special Kit", image: brazilJesus, price: 3600, originalPrice: 7200 },
 ];
 
 const ProductGrid = () => {
@@ -36,9 +36,10 @@ const ProductGrid = () => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {jerseys.map((jersey, index) => (
+          {jerseys.map((jersey) => (
             <JerseyCard
-              key={index}
+              key={jersey.id}
+              id={jersey.id}
               name={jersey.name}
               image={jersey.image}
               price={jersey.price}
