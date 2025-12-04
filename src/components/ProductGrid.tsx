@@ -37,19 +37,19 @@ const jerseys = [
   { id: "brazil-jesus", name: "Brazil 24/25 Jesus Special Kit", image: brazilJesus, price: 3600, originalPrice: 7200 },
   
   // Retro collection
-  { id: "barcelona-1415-home", name: "Barcelona 14/15 Home UCL Kit", image: barcelona1415Home, price: 3600, originalPrice: 7200 },
-  { id: "ac-milan-0607-away", name: "AC Milan 06/07 UCL Away Kit", image: acMilan0607Away, price: 3600, originalPrice: 7200 },
-  { id: "brazil-0203-home", name: "Brazil 02/03 Home Kit", image: brazil0203Home, price: 3600, originalPrice: 7200 },
-  { id: "real-madrid-1617-away", name: "Real Madrid 16/17 UCL Away Kit", image: realMadrid1617Away, price: 3600, originalPrice: 7200 },
-  { id: "barcelona-0809-home", name: "Barcelona 08/09 UCL Home Kit", image: barcelona0809Home, price: 3600, originalPrice: 7200 },
-  { id: "man-united-0203-home", name: "Man United 02/03 Home Kit", image: manUnited0203Home, price: 3600, originalPrice: 7200 },
-  { id: "netherlands-9899-home", name: "Netherlands 98/99 Home Kit", image: netherlands9899Home, price: 3600, originalPrice: 7200 },
-  { id: "man-united-0708-home-ss", name: "Man United 07/08 UCL Home Kit", image: manUnited0708HomeSS, price: 3600, originalPrice: 7200 },
-  { id: "real-madrid-1314-home-ls", name: "Real Madrid 13/14 Home L/S UCL Kit", image: realMadrid1314HomeLS, price: 3600, originalPrice: 7200 },
-  { id: "real-madrid-2122-home", name: "Real Madrid 21/22 Home Kit", image: realMadrid2122Home, price: 3600, originalPrice: 7200 },
-  { id: "france-1819-home", name: "France 18/19 Home Kit", image: france1819Home, price: 3600, originalPrice: 7200 },
-  { id: "ac-milan-0910-home-ls", name: "AC Milan 09/10 L/S Home Kit", image: acMilan0910HomeLS, price: 3600, originalPrice: 7200 },
-  { id: "barcelona-1011-home", name: "Barcelona 10/11 Home Kit", image: barcelona1011Home, price: 3600, originalPrice: 7200 },
+  { id: "barcelona-1415-home", name: "Barcelona 14/15 Home UCL Kit", image: barcelona1415Home, price: 4300, originalPrice: 8600 },
+  { id: "ac-milan-0607-away", name: "AC Milan 06/07 UCL Away Kit", image: acMilan0607Away, price: 4300, originalPrice: 8600 },
+  { id: "brazil-0203-home", name: "Brazil 02/03 Home Kit", image: brazil0203Home, price: 4300, originalPrice: 8600 },
+  { id: "real-madrid-1617-away", name: "Real Madrid 16/17 UCL Away Kit", image: realMadrid1617Away, price: 4300, originalPrice: 8600 },
+  { id: "barcelona-0809-home", name: "Barcelona 08/09 UCL Home Kit", image: barcelona0809Home, price: 4300, originalPrice: 8600 },
+  { id: "man-united-0203-home", name: "Man United 02/03 Home Kit", image: manUnited0203Home, price: 4300, originalPrice: 8600 },
+  { id: "netherlands-9899-home", name: "Netherlands 98/99 Home Kit", image: netherlands9899Home, price: 4300, originalPrice: 8600 },
+  { id: "man-united-0708-home-ss", name: "Man United 07/08 UCL Home Kit", image: manUnited0708HomeSS, price: 4300, originalPrice: 8600 },
+  { id: "real-madrid-1314-home-ls", name: "Real Madrid 13/14 Home L/S UCL Kit", image: realMadrid1314HomeLS, price: 4300, originalPrice: 8600 },
+  { id: "real-madrid-2122-home", name: "Real Madrid 21/22 Home Kit", image: realMadrid2122Home, price: 4300, originalPrice: 8600 },
+  { id: "france-1819-home", name: "France 18/19 Home Kit", image: france1819Home, price: 4300, originalPrice: 8600 },
+  { id: "ac-milan-0910-home-ls", name: "AC Milan 09/10 L/S Home Kit", image: acMilan0910HomeLS, price: 4300, originalPrice: 8600 },
+  { id: "barcelona-1011-home", name: "Barcelona 10/11 Home Kit", image: barcelona1011Home, price: 4300, originalPrice: 8600 },
 ];
 
 const ProductGrid = () => {
