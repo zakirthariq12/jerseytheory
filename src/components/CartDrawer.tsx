@@ -10,13 +10,13 @@ const CartDrawer = () => {
     if (items.length === 0) return;
     
     const message = items
-      .map((item) => `${item.name} x${item.quantity} - Rs. ${(item.price * item.quantity).toLocaleString()}`)
+      .map((item) => `${item.name} (Size: ${item.size}) x${item.quantity} - Rs. ${(item.price * item.quantity).toLocaleString()}`)
       .join("\n");
     
     const total = `\n\nTotal: Rs. ${totalPrice.toLocaleString()}`;
     const encodedMessage = encodeURIComponent(`Hi! I'd like to order:\n\n${message}${total}`);
     
-    window.open(`https://wa.me/94766559585?text=${encodedMessage}`, "_blank");
+    window.open(`https://wa.me/94729942922?text=${encodedMessage}`, "_blank");
   };
 
   return (
@@ -38,7 +38,7 @@ const CartDrawer = () => {
           <>
             <div className="flex-1 overflow-auto py-4 space-y-4">
               {items.map((item) => (
-                <div key={item.id} className="flex gap-3 bg-secondary/50 p-3 rounded-lg">
+                <div key={`${item.id}-${item.size}`} className="flex gap-3 bg-secondary/50 p-3 rounded-lg">
                   <img
                     src={item.image}
                     alt={item.name}
@@ -46,6 +46,7 @@ const CartDrawer = () => {
                   />
                   <div className="flex-1 min-w-0">
                     <h4 className="font-medium text-sm line-clamp-2">{item.name}</h4>
+                    <p className="text-xs text-muted-foreground">Size: {item.size}</p>
                     <p className="text-primary font-bold mt-1">
                       Rs. {item.price.toLocaleString()}
                     </p>
@@ -54,7 +55,7 @@ const CartDrawer = () => {
                         variant="outline"
                         size="icon"
                         className="h-7 w-7"
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        onClick={() => updateQuantity(item.id, item.size, item.quantity - 1)}
                       >
                         <Minus className="w-3 h-3" />
                       </Button>
@@ -63,7 +64,7 @@ const CartDrawer = () => {
                         variant="outline"
                         size="icon"
                         className="h-7 w-7"
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        onClick={() => updateQuantity(item.id, item.size, item.quantity + 1)}
                       >
                         <Plus className="w-3 h-3" />
                       </Button>
@@ -71,7 +72,7 @@ const CartDrawer = () => {
                         variant="ghost"
                         size="icon"
                         className="h-7 w-7 ml-auto text-destructive hover:text-destructive"
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={() => removeFromCart(item.id, item.size)}
                       >
                         <Trash2 className="w-3 h-3" />
                       </Button>
