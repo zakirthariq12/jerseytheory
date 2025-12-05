@@ -1,11 +1,31 @@
-import { ShoppingCart, Menu, Search } from "lucide-react";
+import { ShoppingCart, Menu, Search, X } from "lucide-react";
 import { useState } from "react";
 import logo from "@/assets/logo.png";
 import { useCart } from "@/contexts/CartContext";
+import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const { totalItems, setIsOpen } = useCart();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      const collectionsSection = document.getElementById("collections");
+      if (collectionsSection) {
+        collectionsSection.scrollIntoView({ behavior: "smooth" });
+      }
+      setIsSearchOpen(false);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -13,22 +33,22 @@ const Header = () => {
       <div className="bg-primary overflow-hidden">
         <div className="animate-marquee whitespace-nowrap py-2">
           <span className="mx-8 text-sm font-semibold text-primary-foreground">
-            FREE SHIPPING ON ALL ORDERS 📦
+            🔥 BUY 3 GET 1 FREE 🔥
           </span>
           <span className="mx-8 text-sm font-semibold text-primary-foreground">
-            BUY 2+ & SAVE 15% - CODE: JT15
+            📦 ISLAND-WIDE DELIVERY IN SRI LANKA 📦
           </span>
           <span className="mx-8 text-sm font-semibold text-primary-foreground">
-            FREE SHIPPING ON ALL ORDERS 📦
+            📞 CALL US: 0729942922
           </span>
           <span className="mx-8 text-sm font-semibold text-primary-foreground">
-            BUY 2+ & SAVE 15% - CODE: JT15
+            🔥 BUY 3 GET 1 FREE 🔥
           </span>
           <span className="mx-8 text-sm font-semibold text-primary-foreground">
-            FREE SHIPPING ON ALL ORDERS 📦
+            📦 ISLAND-WIDE DELIVERY IN SRI LANKA 📦
           </span>
           <span className="mx-8 text-sm font-semibold text-primary-foreground">
-            BUY 2+ & SAVE 15% - CODE: JT15
+            📞 CALL US: 0729942922
           </span>
         </div>
       </div>
@@ -59,7 +79,10 @@ const Header = () => {
 
           {/* Actions */}
           <div className="flex items-center gap-4">
-            <button className="p-2 hover:bg-secondary rounded-md transition-colors">
+            <button 
+              className="p-2 hover:bg-secondary rounded-md transition-colors"
+              onClick={() => setIsSearchOpen(true)}
+            >
               <Search className="w-5 h-5" />
             </button>
             <button 
@@ -86,6 +109,27 @@ const Header = () => {
           </nav>
         </div>
       )}
+
+      {/* Search Dialog */}
+      <Dialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Search Jerseys</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleSearch} className="flex gap-2">
+            <Input
+              placeholder="Search for jerseys..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="flex-1"
+              autoFocus
+            />
+            <button type="submit" className="p-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90">
+              <Search className="w-5 h-5" />
+            </button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </header>
   );
 };
