@@ -19,10 +19,8 @@ const Hero = () => {
             Premium Football Jerseys
           </span>
           
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight mb-6">
-            <span className="text-gradient-orange">JERSEY</span>
-            <br />
-            <span className="text-foreground">THEORY</span>
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tight mb-6 font-bold text-foreground">
+            The Thread That Stays
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
