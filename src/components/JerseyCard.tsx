@@ -30,9 +30,13 @@ const JerseyCard = ({ id, name, image, price, originalPrice }: JerseyCardProps) 
     setIsDialogOpen(true);
   };
 
+  const getAdjustedPrice = () => {
+    return selectedVersion === "Player Version" ? price + 300 : price;
+  };
+
   const confirmAddToCart = () => {
     if (!selectedSize || !selectedVersion) return;
-    addToCart({ id, name, image, price, size: `${selectedSize} - ${selectedVersion}` });
+    addToCart({ id, name, image, price: getAdjustedPrice(), size: `${selectedSize} - ${selectedVersion}` });
     setIsDialogOpen(false);
     setSelectedSize("");
     setSelectedVersion("");
@@ -94,7 +98,12 @@ const JerseyCard = ({ id, name, image, price, originalPrice }: JerseyCardProps) 
               <img src={image} alt={name} className="w-16 h-16 object-cover rounded-md" />
               <div>
                 <p className="font-medium text-sm">{name}</p>
-                <p className="text-primary font-bold">Rs. {price.toLocaleString()}</p>
+                <p className="text-primary font-bold">
+                  Rs. {getAdjustedPrice().toLocaleString()}
+                  {selectedVersion === "Player Version" && (
+                    <span className="text-xs text-muted-foreground ml-1">(+300)</span>
+                  )}
+                </p>
               </div>
             </div>
             <div>
