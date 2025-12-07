@@ -16,7 +16,7 @@ const CartDrawer = () => {
     const total = `\n\nTotal: Rs. ${totalPrice.toLocaleString()}`;
     const encodedMessage = encodeURIComponent(`Hi! I'd like to order:\n\n${message}${total}`);
     
-    window.open(`https://wa.me/94729942922?text=${encodedMessage}`, "_blank");
+    window.open(`https://wa.me/94766559585?text=${encodedMessage}`, "_blank");
   };
 
   return (
