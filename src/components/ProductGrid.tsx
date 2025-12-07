@@ -26,6 +26,14 @@ import france1819Home from "@/assets/jerseys/france-1819-home.webp";
 import acMilan0910HomeLS from "@/assets/jerseys/ac-milan-0910-home-ls.webp";
 import barcelona1011Home from "@/assets/jerseys/barcelona-1011-home.webp";
 
+// Import jersey images - New additions
+import acMilan2425Home from "@/assets/jerseys/ac-milan-2425-home.webp";
+import atleticoMadrid2425Home from "@/assets/jerseys/atletico-madrid-2425-home.webp";
+import barcelona2425Third from "@/assets/jerseys/barcelona-2425-third.jpg";
+import chelsea2425ThirdSpecial from "@/assets/jerseys/chelsea-2425-third-special.webp";
+import portugal2425Home from "@/assets/jerseys/portugal-2425-home.png";
+import mexico2223Home from "@/assets/jerseys/mexico-2223-home.png";
+
 type Category = "all" | "clubs" | "national" | "retro";
 
 const jerseys = [
@@ -35,12 +43,18 @@ const jerseys = [
   { id: "barcelona-pink", name: "Barcelona 25/26 Bright Pink Special Kit", image: barcelonaPink, price: 3599, originalPrice: 7199, category: "clubs" as const },
   { id: "real-madrid-dragon", name: "Real Madrid 25/26 Pink Dragon Special Kit", image: realMadridDragon, price: 3599, originalPrice: 7199, category: "clubs" as const },
   { id: "barcelona-pink-special", name: "Barcelona 25/26 Pink Special Kit", image: barcelonaPinkSpecial, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "ac-milan-2425-home", name: "AC Milan 24/25 Home Kit", image: acMilan2425Home, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "atletico-madrid-2425-home", name: "Atletico Madrid 24/25 Home Kit", image: atleticoMadrid2425Home, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "barcelona-2425-third", name: "Barcelona 24/25 Third Kit", image: barcelona2425Third, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "chelsea-2425-third-special", name: "Chelsea 24/25 Third Special Kit", image: chelsea2425ThirdSpecial, price: 3599, originalPrice: 7199, category: "clubs" as const },
   
   // National Teams
   { id: "brazil-jesus", name: "Brazil 24/25 Jesus Special Kit", image: brazilJesus, price: 3599, originalPrice: 7199, category: "national" as const },
   { id: "netherlands-9899-home", name: "Netherlands 98/99 Home Kit", image: netherlands9899Home, price: 4299, originalPrice: 8599, category: "national" as const },
   { id: "france-1819-home", name: "France 18/19 Home Kit", image: france1819Home, price: 4299, originalPrice: 8599, category: "national" as const },
   { id: "brazil-0203-home", name: "Brazil 02/03 Home Kit", image: brazil0203Home, price: 4299, originalPrice: 8599, category: "national" as const },
+  { id: "portugal-2425-home", name: "Portugal 24/25 Home Kit", image: portugal2425Home, price: 3599, originalPrice: 7199, category: "national" as const },
+  { id: "mexico-2223-home", name: "Mexico 22/23 Home Kit", image: mexico2223Home, price: 3599, originalPrice: 7199, category: "national" as const },
   
   // Retro Kits
   { id: "santos-home", name: "Santos 12/13 Home Kit", image: santosHome, price: 3599, originalPrice: 7199, category: "retro" as const },
