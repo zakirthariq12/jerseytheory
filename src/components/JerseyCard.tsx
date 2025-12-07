@@ -18,21 +18,24 @@ interface JerseyCardProps {
 }
 
 const SIZES = ["S", "M", "L", "XL", "XXL"];
+const VERSIONS = ["Fan Version", "Player Version"];
 
 const JerseyCard = ({ id, name, image, price, originalPrice }: JerseyCardProps) => {
   const { addToCart } = useCart();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string>("");
+  const [selectedVersion, setSelectedVersion] = useState<string>("");
 
   const handleAddToCart = () => {
     setIsDialogOpen(true);
   };
 
   const confirmAddToCart = () => {
-    if (!selectedSize) return;
-    addToCart({ id, name, image, price, size: selectedSize });
+    if (!selectedSize || !selectedVersion) return;
+    addToCart({ id, name, image, price, size: `${selectedSize} - ${selectedVersion}` });
     setIsDialogOpen(false);
     setSelectedSize("");
+    setSelectedVersion("");
   };
 
   return (
@@ -94,25 +97,46 @@ const JerseyCard = ({ id, name, image, price, originalPrice }: JerseyCardProps) 
                 <p className="text-primary font-bold">Rs. {price.toLocaleString()}</p>
               </div>
             </div>
-            <div className="grid grid-cols-5 gap-2">
-              {SIZES.map((size) => (
-                <button
-                  key={size}
-                  onClick={() => setSelectedSize(size)}
-                  className={`py-2 px-3 border rounded-md text-sm font-medium transition-colors ${
-                    selectedSize === size
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "border-border hover:border-primary"
-                  }`}
-                >
-                  {size}
-                </button>
-              ))}
+            <div>
+              <p className="text-sm font-medium text-muted-foreground mb-2">Version</p>
+              <div className="grid grid-cols-2 gap-2">
+                {VERSIONS.map((version) => (
+                  <button
+                    key={version}
+                    onClick={() => setSelectedVersion(version)}
+                    className={`py-2 px-3 border rounded-md text-sm font-medium transition-colors ${
+                      selectedVersion === version
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "border-border hover:border-primary"
+                    }`}
+                  >
+                    {version}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-muted-foreground mb-2">Size</p>
+              <div className="grid grid-cols-5 gap-2">
+                {SIZES.map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`py-2 px-3 border rounded-md text-sm font-medium transition-colors ${
+                      selectedSize === size
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "border-border hover:border-primary"
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
             </div>
             <Button 
               onClick={confirmAddToCart} 
               className="w-full gap-2" 
-              disabled={!selectedSize}
+              disabled={!selectedSize || !selectedVersion}
             >
               <ShoppingCart className="w-4 h-4" />
               Add to Cart
