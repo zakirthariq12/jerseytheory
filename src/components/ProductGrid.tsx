@@ -34,6 +34,12 @@ import chelsea2425ThirdSpecial from "@/assets/jerseys/chelsea-2425-third-special
 import portugal2425Home from "@/assets/jerseys/portugal-2425-home.png";
 import mexico2223Home from "@/assets/jerseys/mexico-2223-home.png";
 
+// Import jersey images - 2026 World Cup
+import peru2026WcHome from "@/assets/jerseys/peru-2026-wc-home.png";
+import colombia2026WcHome from "@/assets/jerseys/colombia-2026-wc-home.png";
+import germany2026WcHome from "@/assets/jerseys/germany-2026-wc-home.png";
+import argentina2026WcHome from "@/assets/jerseys/argentina-2026-wc-home.png";
+
 type Category = "all" | "clubs" | "national" | "retro";
 
 const jerseys = [
@@ -55,6 +61,10 @@ const jerseys = [
   { id: "brazil-0203-home", name: "Brazil 02/03 Home Kit", image: brazil0203Home, price: 4299, originalPrice: 8599, category: "national" as const },
   { id: "portugal-2426-wc", name: "Portugal 2026 World Cup Home Kit", image: portugal2425Home, price: 3599, originalPrice: 7199, category: "national" as const },
   { id: "mexico-2426-wc", name: "Mexico 2026 World Cup Home Kit", image: mexico2223Home, price: 3599, originalPrice: 7199, category: "national" as const },
+  { id: "peru-2026-wc", name: "Peru 2026 World Cup Home Kit", image: peru2026WcHome, price: 3599, originalPrice: 7199, category: "national" as const },
+  { id: "colombia-2026-wc", name: "Colombia 2026 World Cup Home Kit", image: colombia2026WcHome, price: 3599, originalPrice: 7199, category: "national" as const },
+  { id: "germany-2026-wc", name: "Germany 2026 World Cup Home Kit", image: germany2026WcHome, price: 3599, originalPrice: 7199, category: "national" as const },
+  { id: "argentina-2026-wc", name: "Argentina 2026 World Cup Home Kit", image: argentina2026WcHome, price: 3599, originalPrice: 7199, category: "national" as const },
   
   // Retro Kits
   { id: "santos-home", name: "Santos 12/13 Home Kit", image: santosHome, price: 3599, originalPrice: 7199, category: "retro" as const },
