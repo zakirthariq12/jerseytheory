@@ -40,6 +40,18 @@ import colombia2026WcHome from "@/assets/jerseys/colombia-2026-wc-home.png";
 import germany2026WcHome from "@/assets/jerseys/germany-2026-wc-home.png";
 import argentina2026WcHome from "@/assets/jerseys/argentina-2026-wc-home.png";
 
+// Import jersey images - New batch
+import tottenham2425Home from "@/assets/jerseys/tottenham-2425-home.webp";
+import tottenham2425ThirdSpecial from "@/assets/jerseys/tottenham-2425-third-special.jpeg";
+import liverpool2425Home from "@/assets/jerseys/liverpool-2425-home.webp";
+import manUnitedRetroBlack from "@/assets/jerseys/man-united-retro-black.webp";
+import liverpool2425AwayLS from "@/assets/jerseys/liverpool-2425-away-ls.webp";
+import barcelonaElClasicoSpecial from "@/assets/jerseys/barcelona-el-clasico-special.webp";
+import barcelonaTravisScott from "@/assets/jerseys/barcelona-travis-scott.webp";
+import psg2425Away from "@/assets/jerseys/psg-2425-away.webp";
+import manUnited2425Home from "@/assets/jerseys/man-united-2425-home.webp";
+import realMadrid2425Away from "@/assets/jerseys/real-madrid-2425-away.jpg";
+
 type Category = "all" | "clubs" | "national" | "retro";
 
 const jerseys = [
@@ -53,6 +65,16 @@ const jerseys = [
   { id: "atletico-madrid-2425-home", name: "Atletico Madrid 24/25 Home Kit", image: atleticoMadrid2425Home, price: 3599, originalPrice: 7199, category: "clubs" as const },
   { id: "barcelona-2425-third", name: "Barcelona 24/25 Third Kit", image: barcelona2425Third, price: 3599, originalPrice: 7199, category: "clubs" as const },
   { id: "chelsea-2425-third-special", name: "Chelsea 24/25 Third Special Kit", image: chelsea2425ThirdSpecial, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "tottenham-2425-home", name: "Tottenham 24/25 Home Kit", image: tottenham2425Home, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "tottenham-2425-third-special", name: "Tottenham 24/25 Third Special Kit", image: tottenham2425ThirdSpecial, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "liverpool-2425-home", name: "Liverpool 24/25 Home Kit", image: liverpool2425Home, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "liverpool-2425-away-ls", name: "Liverpool 24/25 Away L/S Kit", image: liverpool2425AwayLS, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "barcelona-el-clasico-special", name: "Barcelona El Clasico Special Kit", image: barcelonaElClasicoSpecial, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "barcelona-travis-scott", name: "Barcelona Travis Scott Away Kit", image: barcelonaTravisScott, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "psg-2425-away", name: "PSG 24/25 Away Kit", image: psg2425Away, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "man-united-2425-home", name: "Man United 24/25 Home Kit", image: manUnited2425Home, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "real-madrid-2425-away", name: "Real Madrid 24/25 Away Kit", image: realMadrid2425Away, price: 3599, originalPrice: 7199, category: "clubs" as const },
+  { id: "man-united-retro-black", name: "Man United Retro Black Kit", image: manUnitedRetroBlack, price: 3599, originalPrice: 7199, category: "retro" as const },
   
   // National Teams
   { id: "brazil-jesus", name: "Brazil 24/25 Jesus Special Kit", image: brazilJesus, price: 3599, originalPrice: 7199, category: "national" as const },
