@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ShoppingCart } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ShoppingCart, Tag, Check } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useState } from "react";
 import {
@@ -19,27 +20,62 @@ interface JerseyCardProps {
 
 const SIZES = ["S", "M", "L", "XL", "XXL"];
 const VERSIONS = ["Fan Version", "Player Version"];
+const VALID_COUPONS: Record<string, number> = {
+  "JT10": 10, // 10% off
+};
 
 const JerseyCard = ({ id, name, image, price, originalPrice }: JerseyCardProps) => {
   const { addToCart } = useCart();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedVersion, setSelectedVersion] = useState<string>("");
+  const [couponCode, setCouponCode] = useState<string>("");
+  const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
+  const [couponError, setCouponError] = useState<string>("");
 
   const handleAddToCart = () => {
     setIsDialogOpen(true);
   };
 
-  const getAdjustedPrice = () => {
+  const getBasePrice = () => {
     return selectedVersion === "Player Version" ? price + 300 : price;
+  };
+
+  const getDiscountedPrice = () => {
+    const basePrice = getBasePrice();
+    if (appliedCoupon && VALID_COUPONS[appliedCoupon]) {
+      const discount = VALID_COUPONS[appliedCoupon];
+      return Math.round(basePrice * (1 - discount / 100));
+    }
+    return basePrice;
+  };
+
+  const handleApplyCoupon = () => {
+    const code = couponCode.toUpperCase().trim();
+    if (VALID_COUPONS[code]) {
+      setAppliedCoupon(code);
+      setCouponError("");
+    } else {
+      setCouponError("Invalid coupon code");
+      setAppliedCoupon(null);
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null);
+    setCouponCode("");
+    setCouponError("");
   };
 
   const confirmAddToCart = () => {
     if (!selectedSize || !selectedVersion) return;
-    addToCart({ id, name, image, price: getAdjustedPrice(), size: `${selectedSize} - ${selectedVersion}` });
+    addToCart({ id, name, image, price: getDiscountedPrice(), size: `${selectedSize} - ${selectedVersion}` });
     setIsDialogOpen(false);
     setSelectedSize("");
     setSelectedVersion("");
+    setCouponCode("");
+    setAppliedCoupon(null);
+    setCouponError("");
   };
 
   return (
@@ -98,12 +134,25 @@ const JerseyCard = ({ id, name, image, price, originalPrice }: JerseyCardProps) 
               <img src={image} alt={name} className="w-16 h-16 object-cover rounded-md" />
               <div>
                 <p className="font-medium text-sm">{name}</p>
-                <p className="text-primary font-bold">
-                  Rs. {getAdjustedPrice().toLocaleString()}
-                  {selectedVersion === "Player Version" && (
-                    <span className="text-xs text-muted-foreground ml-1">(+300)</span>
+                <div className="flex items-center gap-2">
+                  <p className="text-primary font-bold">
+                    Rs. {getDiscountedPrice().toLocaleString()}
+                  </p>
+                  {appliedCoupon && (
+                    <span className="text-xs line-through text-muted-foreground">
+                      Rs. {getBasePrice().toLocaleString()}
+                    </span>
                   )}
-                </p>
+                  {selectedVersion === "Player Version" && !appliedCoupon && (
+                    <span className="text-xs text-muted-foreground">(+300)</span>
+                  )}
+                </div>
+                {appliedCoupon && (
+                  <p className="text-xs text-green-500 flex items-center gap-1">
+                    <Check className="w-3 h-3" />
+                    {VALID_COUPONS[appliedCoupon]}% off applied!
+                  </p>
+                )}
               </div>
             </div>
             <div>
@@ -142,6 +191,48 @@ const JerseyCard = ({ id, name, image, price, originalPrice }: JerseyCardProps) 
                 ))}
               </div>
             </div>
+            {/* Coupon Code Section */}
+            <div className="border border-dashed border-primary/50 rounded-lg p-3 bg-primary/5">
+              <p className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1">
+                <Tag className="w-3 h-3" />
+                Have a coupon code?
+              </p>
+              {appliedCoupon ? (
+                <div className="flex items-center justify-between bg-green-500/10 border border-green-500/30 rounded-md px-3 py-2">
+                  <span className="text-sm font-medium text-green-500 flex items-center gap-1">
+                    <Check className="w-4 h-4" />
+                    {appliedCoupon} applied
+                  </span>
+                  <button 
+                    onClick={handleRemoveCoupon}
+                    className="text-xs text-muted-foreground hover:text-foreground"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ) : (
+                <div className="flex gap-2">
+                  <Input
+                    placeholder="Enter code (e.g., JT10)"
+                    value={couponCode}
+                    onChange={(e) => setCouponCode(e.target.value)}
+                    className="h-9 text-sm uppercase"
+                  />
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={handleApplyCoupon}
+                    className="h-9 px-4"
+                  >
+                    Apply
+                  </Button>
+                </div>
+              )}
+              {couponError && (
+                <p className="text-xs text-red-500 mt-1">{couponError}</p>
+              )}
+            </div>
+
             <Button 
               onClick={confirmAddToCart} 
               className="w-full gap-2" 
