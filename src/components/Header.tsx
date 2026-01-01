@@ -1,7 +1,9 @@
-import { ShoppingCart, Menu, Search, X } from "lucide-react";
+import { ShoppingCart, Menu, Search, Moon, Sun } from "lucide-react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { useCart } from "@/contexts/CartContext";
+import { useTheme } from "@/contexts/ThemeContext";
 import { Input } from "@/components/ui/input";
 import {
   Dialog,
@@ -14,15 +16,14 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const { totalItems, setIsOpen } = useCart();
+  const { totalItems } = useCart();
+  const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      const collectionsSection = document.getElementById("collections");
-      if (collectionsSection) {
-        collectionsSection.scrollIntoView({ behavior: "smooth" });
-      }
+      navigate("/#collections");
       setIsSearchOpen(false);
     }
   };
@@ -66,34 +67,50 @@ const Header = () => {
 
           {/* Navigation - Desktop */}
           <nav className="hidden lg:flex items-center gap-8">
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">Home</a>
-            <a href="#collections" className="text-sm font-medium hover:text-primary transition-colors">Collections</a>
+            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">Home</Link>
+            <Link to="/#collections" className="text-sm font-medium hover:text-primary transition-colors">Collections</Link>
             <a href="#" className="text-sm font-medium hover:text-primary transition-colors">Track Order</a>
             <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">Contact Us</a>
           </nav>
 
           {/* Logo */}
-          <div className="absolute left-1/2 -translate-x-1/2">
+          <Link to="/" className="absolute left-1/2 -translate-x-1/2">
             <img src={logo} alt="Jersey Theory" className="h-10 w-auto" />
-          </div>
+          </Link>
 
           {/* Actions */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 hover:bg-secondary rounded-md transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
+            </button>
+
             <button 
               className="p-2 hover:bg-secondary rounded-md transition-colors"
               onClick={() => setIsSearchOpen(true)}
             >
               <Search className="w-5 h-5" />
             </button>
-            <button 
+
+            <Link
+              to="/cart"
               className="p-2 hover:bg-secondary rounded-md transition-colors relative"
-              onClick={() => setIsOpen(true)}
             >
               <ShoppingCart className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center font-bold">
-                {totalItems}
-              </span>
-            </button>
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center font-bold">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
           </div>
         </div>
       </div>
@@ -102,8 +119,8 @@ const Header = () => {
       {isMenuOpen && (
         <div className="lg:hidden border-t border-border bg-background">
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">Home</a>
-            <a href="#collections" className="text-sm font-medium hover:text-primary transition-colors">Collections</a>
+            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>Home</Link>
+            <Link to="/#collections" className="text-sm font-medium hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>Collections</Link>
             <a href="#" className="text-sm font-medium hover:text-primary transition-colors">Track Order</a>
             <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">Contact Us</a>
           </nav>
