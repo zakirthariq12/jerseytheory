@@ -8,6 +8,43 @@
 
 @layer base {
   :root {
+    --background: 40 20% 96%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 24 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 15% 92%;
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 40 10% 88%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 24 90% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 40 10% 85%;
+    --input: 40 10% 85%;
+    --ring: 24 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --orange-glow: 24 100% 55%;
+    --orange-dark: 24 100% 35%;
+    --surface-elevated: 0 0% 98%;
+  }
+
+  .dark {
     --background: 0 0% 8%;
     --foreground: 0 0% 98%;
 
@@ -35,8 +72,6 @@
     --border: 0 0% 20%;
     --input: 0 0% 20%;
     --ring: 24 100% 50%;
-
-    --radius: 0.5rem;
 
     /* Custom tokens */
     --orange-glow: 24 100% 55%;
